@@ -19,3 +19,12 @@ func MustGet(key string) (val string) {
 	}
 	return
 }
+
+// GetOr attempts to get environment variable, however, if it fails to do so,
+// it will return the given default_ value.
+func GetOr(key, default_ string) string {
+	if val, err := TryGet(key); err == nil {
+		return val
+	}
+	return default_
+}
